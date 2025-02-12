@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Outfit:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+#OneSideCurveButton {
+  background-color: orange;
+  /* Or the exact color from your design */
+  border-radius: 5px;
+  /* Adjust the radius as needed */
+  padding: 10px 20px;
+  /* Adjust padding to fit your design */
+  color: white;
+  /* For text color */
+  font-weight: bold;
+  /* Optional, for bolder text */
+
+  /* Shade effect: */
+  box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.2);
+  /* Adjust values as needed */
+}
+
+
+
+#onesidetintButton {
+  background-color: #FF4300;
+  color: aliceblue;
+}
+
+.button-shape {
+  background-color: #FF4300;
+  border-bottom: 5px solid;
+  box-sizing: border-box;
+  color: #FF4300;
+  font-size: 1.125em;
+  border-radius: 0px !important;
+  /*18/16*/
+  /* height: 52px; */
+  /* padding: 13px 36px; */
+  position: relative;
+  /* width: 200px; */
+}
+
+.button-shape:after {
+  background: #FF4300;
+  /* border-bottom: 5px solid; */
+  content: "";
+  height: 38px;
+  position: absolute;
+  right: -13px;
+  top: -1px;
+  -webkit-transform: skew(-20deg);
+  -moz-transform: skew(-20deg);
+  transform: skew(-20deg);
+  width: 23px;
+}
+
+
+
+
