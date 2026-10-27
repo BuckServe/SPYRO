@@ -1,66 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Outfit:wght@100..900&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background-color: #1e1e1e;
+    color: #fff;
+    font-family: 'Outfit Variable', Outfit, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  :focus-visible {
+    outline: 2px solid #ff6400;
+    outline-offset: 3px;
+  }
 }
 
-#OneSideCurveButton {
-  background-color: orange;
-  /* Or the exact color from your design */
-  border-radius: 5px;
-  /* Adjust the radius as needed */
-  padding: 10px 20px;
-  /* Adjust padding to fit your design */
-  color: white;
-  /* For text color */
-  font-weight: bold;
-  /* Optional, for bolder text */
+@layer components {
+  /* Slanted orange shape behind class / lifestyle pictures */
+  .photo-accent {
+    position: absolute;
+    left: -0.5rem;
+    right: -0.5rem;
+    bottom: -0.5rem;
+    height: 50%;
+    background-color: #f97316;
+    border-radius: 0.25rem 30px 0.25rem 0.25rem;
+    clip-path: polygon(0 33%, 100% 0, 100% 100%, 0 100%);
+  }
 
-  /* Shade effect: */
-  box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.2);
-  /* Adjust values as needed */
+  @media (min-width: 640px) {
+    .photo-accent {
+      border-top-right-radius: 40px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .photo-accent {
+      border-top-right-radius: 50px;
+    }
+  }
+
+  .section-title {
+    @apply font-Outfit text-3xl font-semibold text-white sm:text-4xl lg:text-48px;
+  }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-
-#onesidetintButton {
-  background-color: #FF4300;
-  color: aliceblue;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
-
-.button-shape {
-  background-color: #FF4300;
-  border-bottom: 5px solid;
-  box-sizing: border-box;
-  color: #FF4300;
-  font-size: 1.125em;
-  border-radius: 0px !important;
-  /*18/16*/
-  /* height: 52px; */
-  /* padding: 13px 36px; */
-  position: relative;
-  /* width: 200px; */
-}
-
-.button-shape:after {
-  background: #FF4300;
-  /* border-bottom: 5px solid; */
-  content: "";
-  height: 38px;
-  position: absolute;
-  right: -13px;
-  top: -1px;
-  -webkit-transform: skew(-20deg);
-  -moz-transform: skew(-20deg);
-  transform: skew(-20deg);
-  width: 23px;
-}
-
-
-
-

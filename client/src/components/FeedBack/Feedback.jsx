@@ -1,68 +1,58 @@
 import React from 'react';
-import CF1 from '../../Images/CF1.png';
-import classessBG from '../../Images/classessBG.png';
+import { FaStar } from 'react-icons/fa';
+import CF1 from '../../Images/CF1.webp';
+import classessBG from '../../Images/classessBG.webp';
+
+// Placeholder testimonials: replace with real member reviews before launch
+const reviews = [
+    {
+        review: 'The trainers actually check your form and push you just enough. Three months in and I am lifting more than I ever have.',
+        rating: 5,
+        name: 'Courtney Henry',
+        profile_picture: CF1,
+    },
+    {
+        review: 'Total Body Burnout is tough but so much fun. The group energy keeps me coming back every week.',
+        rating: 4,
+        name: 'Brooklyn Simmons',
+        profile_picture: CF1,
+    },
+    {
+        review: 'Clean equipment, friendly people and classes for every level. I started as a complete beginner and never felt out of place.',
+        rating: 4,
+        name: 'Jane Cooper',
+        profile_picture: CF1,
+    },
+];
 
 const Feedback = () => {
-    const reviews = [
-        {
-            review: "Al-Balad is essentially Jeddah old town. It was once surrounded by a wall, but now only the gates remain.",
-            rating: 3,
-            name: "Courtney Henry",
-            profile_picture: CF1
-        },
-        {
-            review: "This is a great historic site to visit. I rented a little cart and the driver was a really good friend.",
-            rating: 4,
-            name: "Brooklyn Simmons",
-            profile_picture: CF1
-        },
-        {
-            review: "I had been to Al-Balad several times. It is one of my favorite places in Jeddah. It is historic.",
-            rating: 4,
-            name: "Jane Cooper",
-            profile_picture: CF1
-        }
-    ];
-
     return (
-        <div
-            className="w-full min-h-screen bg-cover bg-center pb-20"
-            style={{ backgroundImage: `url(${classessBG})` }}
-        >
-            <div className="mx-auto px-6 sm:px-10 lg:px-28">
-                <div className="text-center mb-8 pt-20 pb-10">
-                    <h1 className=" font-Outfit font-semibold text-48px text-white">Client’s Feedback</h1>
-                </div>
-                <div className="flex flex-wrap justify-center">
-                    {reviews.map((item, index) => (
-                        <div key={index} className="w-full sm:w-6/12 md:w-4/12 lg:w-3/12 px-4 mb-8">
-                            <div className="bg-gray-800 p-6 rounded-lg shadow-lg border-b-8 border-orange-700 h-full flex flex-col justify-between">
-                                {/* Review Text */}
-                                <div className="mb-4 font-Outfit text-white text-base sm:text-lg md:text-xl">
-                                    {item.review}
+        <section className="w-full bg-ink bg-cover bg-center pb-16 lg:pb-20" style={{ backgroundImage: `url(${classessBG})` }}>
+            <div className="container">
+                <h2 className="section-title py-12 text-center lg:pb-14 lg:pt-20">Client’s Feedback</h2>
+                <div className="mx-auto grid max-w-md gap-6 sm:max-w-none sm:grid-cols-2 lg:max-w-5xl lg:grid-cols-3">
+                    {reviews.map((item) => (
+                        <figure
+                            key={item.name}
+                            className="flex h-full flex-col justify-between rounded-lg border-b-8 border-orange-700 bg-gray-800 p-6 shadow-lg transition-transform duration-300 hover:-translate-y-1"
+                        >
+                            <blockquote className="mb-6 font-Outfit text-base text-white sm:text-lg">“{item.review}”</blockquote>
+                            <figcaption>
+                                <div className="mb-3 flex gap-1" aria-label={`${item.rating} out of 5 stars`}>
+                                    {Array.from({ length: 5 }, (_, i) => (
+                                        <FaStar key={i} className={i < item.rating ? 'text-yellow-400' : 'text-gray-600'} aria-hidden="true" />
+                                    ))}
                                 </div>
-
-                                {/* Rating and Profile */}
-                                <div>
-                                    <div className="mb-3 text-yellow-500">
-                                        {Array(5).fill(0).map((_, i) => (
-                                            <span
-                                                key={i}
-                                                className={`fa fa-star px-1 ${i < item.rating ? "checked" : ""}`}
-                                            ></span>
-                                        ))}
-                                    </div>
-                                    <div className="flex items-center">
-                                        <img src={item.profile_picture} alt="Profile_Picture" className="rounded-full w-10 h-10 sm:w-12 sm:h-12" />
-                                        <p className="ml-3 text-white font-Outfit text-sm sm:text-base md:text-lg">{item.name}</p>
-                                    </div>
+                                <div className="flex items-center">
+                                    <img src={item.profile_picture} alt="" className="h-10 w-10 rounded-full sm:h-12 sm:w-12" width="60" height="60" loading="lazy" />
+                                    <p className="ml-3 font-Outfit text-sm text-white sm:text-base md:text-lg">{item.name}</p>
                                 </div>
-                            </div>
-                        </div>
+                            </figcaption>
+                        </figure>
                     ))}
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

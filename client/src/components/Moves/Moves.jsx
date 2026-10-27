@@ -1,74 +1,64 @@
 import React from 'react';
-import c1Image from '../../Images/c1.png';
-import c2Image from '../../Images/c2.png';
-import c3Image from '../../Images/c3.png';
-import c4Image from '../../Images/c4.png';
+import c1Image from '../../Images/c1.webp';
+import c2Image from '../../Images/c2.webp';
+import c3Image from '../../Images/c3.webp';
+import c4Image from '../../Images/c4.webp';
+
+const TILES = [
+    { title: 'Zumba', image: c2Image },
+    { title: 'Yoga', image: c3Image },
+    { title: 'Martial Arts', image: c4Image },
+];
 
 const Moves = () => {
     return (
-        <div className="bg-[#1E1E1E] py-10">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-center text-center mb-10">
-                    <h1 className="font-Outfit font-semibold text-3xl sm:text-4xl lg:text-5xl text-white">Find what moves you</h1>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 bg-transparent">
+        <section className="bg-ink py-12">
+            <div className="container">
+                <h2 className="section-title mb-10 text-center">Find what moves you</h2>
 
-                    {/* GYM Section */}
-                    <div className="md:col-span-2 flex flex-col justify-between bg-transparent rounded-tl-[40px] lg:rounded-tl-[60px] h-full">
-                        <div className="bg-transparent text-white rounded-lg overflow-hidden h-full flex flex-col">
-                            <div className="relative h-full">
-                                <img
-                                    src={c1Image}
-                                    alt="Gym"
-                                    className="w-full h-48 sm:h-64 md:h-80 lg:h-full object-cover border-t-2 border-l-2 border-r-2 border-transparent"
-                                    style={{
-                                        borderImage: 'linear-gradient(to right, #FF4300, #FF6400) 1',
-                                        maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
-                                        WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
-                                    }}
-                                />
-                            </div>
-                            <div className="pt-4 sm:pt-6 px-4 flex-grow space-y-3">
-                                <h2 className="text-xl sm:text-2xl font-semibold">GYM</h2>
-                                <p className="font-Outfit font-light text-sm sm:text-base lg:text-[14px]">
-                                    Expect a heart-pumping workout that will leave you feeling energized and accomplished. Our supportive community of like-minded individuals.
-                                </p>
-                            </div>
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+                    {/* GYM */}
+                    <div className="flex flex-col text-white sm:col-span-2 md:col-span-3 lg:col-span-2">
+                        <div className="overflow-hidden rounded-tl-[40px] lg:rounded-tl-[60px]">
+                            <img
+                                src={c1Image}
+                                alt="Gym"
+                                width="511"
+                                height="299"
+                                className="h-56 w-full border-x-2 border-t-2 border-transparent object-cover sm:h-72 lg:h-[300px]"
+                                style={{
+                                    borderImage: 'linear-gradient(to right, #FF4300, #FF6400) 1',
+                                    maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
+                                    WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
+                                }}
+                            />
+                        </div>
+                        <div className="space-y-3 px-4 pt-4">
+                            <h3 className="text-xl font-semibold sm:text-2xl">GYM</h3>
+                            <p className="font-Outfit text-sm font-light sm:text-base">
+                                Expect a heart-pumping workout that will leave you feeling energized and accomplished. Our supportive community of like-minded individuals.
+                            </p>
                         </div>
                     </div>
 
-                    {/* Zumba Section */}
-                    <div className="h-full flex flex-col">
-                        <div className="relative overflow-hidden h-full">
-                            <img src={c2Image} alt="Zumba" className="w-full h-48 sm:h-64 md:h-80 lg:h-full object-cover" />
-                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white font-bold text-lg sm:text-xl">
-                                Zumba
+                    {TILES.map((t) => (
+                        <div key={t.title} className="group relative h-64 overflow-hidden sm:h-80 lg:h-auto lg:min-h-[400px]">
+                            <img
+                                src={t.image}
+                                alt={t.title}
+                                width="170"
+                                height="400"
+                                loading="lazy"
+                                className="absolute inset-0 h-full w-full object-cover object-[50%_20%] transition-transform duration-500 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-2 pb-4 pt-10 text-center text-lg font-bold text-white sm:text-xl">
+                                {t.title}
                             </div>
                         </div>
-                    </div>
-
-                    {/* Yoga Section */}
-                    <div className="h-full flex flex-col">
-                        <div className="relative overflow-hidden h-full">
-                            <img src={c3Image} alt="Yoga" className="w-full h-48 sm:h-64 md:h-80 lg:h-full object-cover" />
-                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white font-bold text-lg sm:text-xl">
-                                Yoga
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Martial Arts Section */}
-                    <div className="h-full flex flex-col">
-                        <div className="relative overflow-hidden h-full">
-                            <img src={c4Image} alt="Martial Arts" className="w-full h-48 sm:h-64 md:h-80 lg:h-full object-cover" />
-                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white font-bold text-lg sm:text-xl">
-                                Martial Arts
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

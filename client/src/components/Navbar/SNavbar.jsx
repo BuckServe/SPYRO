@@ -1,61 +1,80 @@
 import React, { useState, useEffect } from 'react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import OneSideCurveButton from '../Buttons/OneSideCurveButton';
-import { Link } from 'react-router-dom';
+
+const LINKS = [
+    { to: '/Classes', label: 'Classes' },
+    { to: '/team', label: 'Team' },
+    { to: '/about-us', label: 'About Us' },
+    { to: '/gallery', label: 'Gallery' },
+];
+
+const linkClass = ({ isActive }) =>
+    `no-underline transition-colors duration-200 hover:text-orangeR ${isActive ? 'text-orangeR' : 'text-white'}`;
 
 const SNavbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const { pathname } = useLocation();
 
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
-        };
-
-        window.addEventListener('scroll', handleScroll);
+        const handleScroll = () => setIsScrolled(window.scrollY > 50);
+        handleScroll();
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Close the mobile menu whenever the page changes
+    useEffect(() => setIsMobileMenuOpen(false), [pathname]);
+
+    const solid = isScrolled || isMobileMenuOpen;
+
     return (
-        <nav
-            className={`fixed w-full top-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-[#1E1E1E]' : 'bg-transparent'}`}
-        >
-            <div className="container mx-auto flex justify-between items-center py-4 px-4 lg:px-0">
+        <nav className={`fixed top-0 z-50 w-full transition-colors duration-300 ${solid ? 'bg-ink shadow-lg shadow-black/30' : 'bg-transparent'}`}>
+            <div className="container flex items-center justify-between py-4">
                 <Link
-                    to='/'
-                    className="font-extrabold text-2xl text-transparent bg-gradient-to-r from-orangeL to-orangeR bg-clip-text no-underline"
-                    id="Nav-Icon"
+                    to="/"
+                    className="bg-gradient-to-r from-orangeL to-orangeR bg-clip-text text-2xl font-extrabold text-transparent no-underline"
                 >
                     SPYRO
                 </Link>
 
-                <div className="hidden lg:flex justify-center items-center space-x-6 font-Outfit text-lg font-medium">
-                    <Link to="/Classes" className="text-white no-underline">Classes</Link>
-                    <Link to="/team" className="text-white no-underline">Team</Link>
-                    <Link to="/about-us" className="text-white no-underline">About Us</Link>
-                    <a href="/gallery" className="text-white no-underline">Gallery</a>
+                <div className="hidden items-center justify-center space-x-6 font-Outfit text-lg font-medium lg:flex">
+                    {LINKS.map((l) => (
+                        <NavLink key={l.to} to={l.to} className={linkClass}>{l.label}</NavLink>
+                    ))}
                 </div>
 
-                <div className="hidden lg:flex items-center">
-                    <Link to="/contact_us"><OneSideCurveButton text="Contact Us" p_x="2vw" p_y="10px" /></Link>
+                <div className="hidden items-center lg:flex">
+                    <OneSideCurveButton to="/contact_us" text="Contact Us" p_x="1.75rem" />
                 </div>
 
-                <div className="lg:hidden flex items-center">
-                    <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-white focus:outline-none">
-                        {isMobileMenuOpen ? <AiOutlineClose size={24} /> : <AiOutlineMenu size={24} />}
-                    </button>
-                </div>
+                <button
+                    type="button"
+                    onClick={() => setIsMobileMenuOpen((o) => !o)}
+                    className="flex items-center p-1 text-white lg:hidden"
+                    aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+                    aria-expanded={isMobileMenuOpen}
+                    aria-controls="mobile-menu"
+                >
+                    {isMobileMenuOpen ? <AiOutlineClose size={26} /> : <AiOutlineMenu size={26} />}
+                </button>
             </div>
 
-            {isMobileMenuOpen && (
-                <div className="lg:hidden flex flex-col items-center bg-[#1E1E1E] text-white space-y-4 py-4">
-                    <a href="/Classes" className="text-lg no-underline text-white">Classes</a>
-                    <a href="/team" className="text-lg no-underline text-white">Team</a>
-                    <a href="/about-us" className="text-lg no-underline text-white">About Us</a>
-                    <a href="/gallery" className="text-lg no-underline text-white">Gallery</a>
-                    <Link to="/contact_us"><OneSideCurveButton text="Contact Us" p_x="15vw" p_y="10px" /></Link>
+            <div
+                id="mobile-menu"
+                className={`grid overflow-hidden bg-ink transition-[grid-template-rows] duration-300 lg:hidden ${isMobileMenuOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
+            >
+                <div className="min-h-0">
+                    <div className="flex flex-col items-center space-y-4 py-5 font-Outfit text-lg">
+                        {LINKS.map((l) => (
+                            <NavLink key={l.to} to={l.to} className={linkClass} tabIndex={isMobileMenuOpen ? 0 : -1}>{l.label}</NavLink>
+                        ))}
+                        <OneSideCurveButton to="/contact_us" text="Contact Us" p_x="3rem" tabIndex={isMobileMenuOpen ? 0 : -1} />
+                    </div>
                 </div>
-            )}
+            </div>
         </nav>
     );
 };
