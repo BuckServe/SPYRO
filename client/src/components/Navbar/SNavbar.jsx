@@ -11,7 +11,7 @@ const LINKS = [
 ];
 
 const linkClass = ({ isActive }) =>
-    `no-underline transition-colors duration-200 hover:text-orangeR ${isActive ? 'text-orangeR' : 'text-white'}`;
+    `nav-underline no-underline transition-colors duration-200 hover:text-orangeR ${isActive ? 'text-orangeR' : 'text-white'}`;
 
 const SNavbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -31,7 +31,7 @@ const SNavbar = () => {
     const solid = isScrolled || isMobileMenuOpen;
 
     return (
-        <nav className={`fixed top-0 z-50 w-full transition-colors duration-300 ${solid ? 'bg-ink shadow-lg shadow-black/30' : 'bg-transparent'}`}>
+        <nav className={`nav-in fixed top-0 z-50 w-full transition-colors duration-300 ${solid ? 'bg-ink shadow-lg shadow-black/30' : 'bg-transparent'}`}>
             <div className="container flex items-center justify-between py-4">
                 <Link
                     to="/"
@@ -60,6 +60,11 @@ const SNavbar = () => {
                 >
                     {isMobileMenuOpen ? <AiOutlineClose size={26} /> : <AiOutlineMenu size={26} />}
                 </button>
+            </div>
+
+            {/* Orange line that fills as you scroll down the page */}
+            <div className="absolute inset-x-0 bottom-0 h-[3px]" aria-hidden="true">
+                <div id="scroll-progress" className="h-full w-full bg-gradient-to-r from-orangeL to-orangeR" />
             </div>
 
             <div

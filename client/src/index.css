@@ -58,6 +58,162 @@
   }
 }
 
+/* ===================== Animations ===================== */
+
+/* Scroll reveal (only hidden once JS is running) */
+.fx-ready [data-reveal],
+.fx-ready [data-stagger] > * {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.fx-ready [data-reveal='left'] { transform: translateX(-40px); }
+.fx-ready [data-reveal='right'] { transform: translateX(40px); }
+.fx-ready [data-reveal='zoom'] { transform: scale(0.92); }
+.fx-ready [data-reveal].in,
+.fx-ready [data-stagger].in > * {
+  opacity: 1;
+  transform: none;
+}
+
+.lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.lift:hover,
+.fx-ready [data-stagger].in > .lift:hover { transform: translateY(-6px); box-shadow: 0 18px 30px -12px rgba(255, 67, 0, 0.45); }
+
+/* Orange lines: fill like a loading bar while scrolling */
+.load-bar {
+  --p: 0;
+  transform: scaleX(var(--p));
+  transform-origin: left center;
+  transition: transform 0.2s linear;
+  overflow: hidden;
+  will-change: transform;
+}
+.load-bar[data-from='right'] { transform-origin: right center; }
+.load-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.28) 0 14px, transparent 14px 28px);
+  background-size: 40px 40px;
+  animation: bar-stripes 0.9s linear infinite;
+}
+.load-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 35%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  animation: bar-sheen 2.2s ease-in-out infinite;
+}
+@keyframes bar-stripes { to { background-position: 40px 0; } }
+@keyframes bar-sheen {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(320%); }
+}
+
+/* Page scroll progress line under the navbar */
+#scroll-progress {
+  --p: 0;
+  transform: scaleX(var(--p));
+  transform-origin: left center;
+}
+
+/* Hero */
+.hero-bg { animation: hero-zoom 14s ease-out both; }
+@keyframes hero-zoom { from { transform: scale(1.12); } to { transform: scale(1); } }
+.hero-in > * { animation: hero-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.hero-in > :nth-child(1) { animation-delay: 0.15s; }
+.hero-in > :nth-child(2) { animation-delay: 0.35s; }
+.hero-in > :nth-child(3) { animation-delay: 0.55s; }
+@keyframes hero-up { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: none; } }
+.stroke-glow { animation: stroke-glow 3s ease-in-out infinite; }
+@keyframes stroke-glow {
+  0%, 100% { text-shadow: 0 0 0 rgba(255, 67, 0, 0); }
+  50% { text-shadow: 0 0 18px rgba(255, 67, 0, 0.55); }
+}
+.nav-in { animation: nav-in 0.7s ease-out both; }
+@keyframes nav-in { from { opacity: 0; transform: translateY(-100%); } to { opacity: 1; transform: none; } }
+
+/* Buttons: light sweep on hover */
+.btn-shine { overflow: hidden; }
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+.btn-shine:hover::after { left: 130%; }
+
+/* Underline that grows under nav links */
+.nav-underline { position: relative; }
+.nav-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background: linear-gradient(90deg, #ff4300, #ff6400);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.nav-underline:hover::after,
+.nav-underline.active::after { transform: scaleX(1); }
+
+/* Orange shape behind photos slides in after the picture */
+.fx-ready [data-reveal] .photo-accent,
+.fx-ready [data-stagger] > * .photo-accent {
+  transform: translate(-14px, 14px);
+  opacity: 0;
+  transition: transform 0.8s 0.25s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s 0.25s ease;
+}
+.fx-ready [data-reveal].in .photo-accent,
+.fx-ready [data-stagger].in > * .photo-accent { transform: none; opacity: 1; }
+
+/* Floating phones in the download section */
+.float-y { animation: float-y 5s ease-in-out infinite; }
+@keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+
+/* Pulsing ring around the video play button */
+.pulse-ring { position: relative; }
+.pulse-ring::before,
+.pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 2px solid #ff6400;
+  animation: ring 2s ease-out infinite;
+}
+.pulse-ring::after { animation-delay: 1s; }
+@keyframes ring { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.8); opacity: 0; } }
+
+/* Gallery page switch */
+.fade-swap { animation: fade-swap 0.5s ease both; }
+@keyframes fade-swap { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+/* Section titles: small orange bar grows under them */
+.title-bar::after {
+  content: '';
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin: 12px auto 0;
+  background: linear-gradient(90deg, #ff4300, #ff6400);
+  transform: skewX(-20deg) scaleX(0);
+  transition: transform 0.7s 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.title-bar.in::after,
+html:not(.fx-ready) .title-bar::after { transform: skewX(-20deg) scaleX(1); }
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -67,6 +223,10 @@
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  .load-bar,
+  #scroll-progress { --p: 1 !important; }
 }

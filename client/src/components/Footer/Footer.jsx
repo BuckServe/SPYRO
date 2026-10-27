@@ -13,7 +13,7 @@ const SOCIALS = [
 const Footer = () => {
     return (
         <footer className="w-full bg-ink bg-cover bg-center py-12" style={{ backgroundImage: `url(${footerBG})` }}>
-            <div className="mx-auto max-w-4xl px-6 text-center">
+            <div data-reveal className="mx-auto max-w-4xl px-6 text-center">
                 <Link to="/" className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-2xl font-extrabold text-transparent no-underline">
                     SPYRO
                 </Link>

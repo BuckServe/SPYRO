@@ -31,7 +31,7 @@ const ContactUs = () => {
                           url(${classessBG})`,
             }}
         >
-            <div className="mx-auto w-full max-w-lg rounded-lg bg-ink/95 p-5 shadow-2xl shadow-black/40 ring-1 ring-white/10 sm:p-8">
+            <div data-reveal="zoom" className="mx-auto w-full max-w-lg rounded-lg bg-ink/95 p-5 shadow-2xl shadow-black/40 ring-1 ring-white/10 sm:p-8">
                 <h1 className="mb-6 text-center font-Outfit text-2xl font-semibold sm:text-3xl">Contact Us</h1>
                 {submitted ? (
                     <div className="space-y-5 text-center" role="status">

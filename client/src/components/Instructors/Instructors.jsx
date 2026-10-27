@@ -14,11 +14,11 @@ const instructorsData = [
 const Instructors = () => {
     return (
         <section className="relative overflow-hidden bg-ink py-12">
-            <h2 className="section-title mb-10 text-center">Instructors</h2>
-            <div className="absolute bottom-1/4 left-0 h-14 w-2/3 max-w-96 bg-gradient-to-t from-orangeL to-orangeR opacity-30" aria-hidden="true" />
-            <div className="absolute bottom-20 left-0 h-14 w-1/2 bg-gradient-to-t from-orangeL to-orangeR opacity-30" aria-hidden="true" />
+            <h2 data-reveal className="section-title title-bar mb-10 text-center">Instructors</h2>
+            <div data-scrollbar className="load-bar absolute bottom-1/4 left-0 h-14 w-2/3 max-w-96 bg-gradient-to-t from-orangeL to-orangeR opacity-40" aria-hidden="true" />
+            <div data-scrollbar className="load-bar absolute bottom-20 left-0 h-14 w-1/2 bg-gradient-to-t from-orangeL to-orangeR opacity-40" aria-hidden="true" />
             <div className="container relative">
-                <div className="mx-auto grid max-w-sm grid-cols-1 gap-8 sm:max-w-none sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+                <div data-stagger className="mx-auto grid max-w-sm grid-cols-1 gap-8 sm:max-w-none sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
                     {instructorsData.map((instructor) => (
                         <figure key={instructor.id} className="group text-center">
                             <div className="overflow-hidden rounded-lg shadow-lg">

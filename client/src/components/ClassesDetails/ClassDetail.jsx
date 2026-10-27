@@ -26,7 +26,7 @@ const ClassDetail = ({ slug }) => {
             }}
         >
             <div className="container grid items-center gap-10 md:grid-cols-2 lg:gap-16">
-                <div className="font-Outfit">
+                <div data-reveal="left" className="font-Outfit">
                     <p className="text-sm font-medium uppercase tracking-[0.2em] text-orangeR">{c.category}</p>
                     <h1 className="mt-2 text-3xl font-semibold sm:text-4xl lg:text-48px">{c.title}</h1>
 
@@ -47,7 +47,7 @@ const ClassDetail = ({ slug }) => {
                     </div>
                 </div>
 
-                <div className="mx-auto w-full max-w-md md:max-w-none">
+                <div data-reveal="right" className="mx-auto w-full max-w-md md:max-w-none">
                     <div className="relative">
                         <div className="photo-accent" aria-hidden="true" />
                         <img className="relative z-10 h-auto w-full" src={c.image} alt={c.title} width="364" height="258" />

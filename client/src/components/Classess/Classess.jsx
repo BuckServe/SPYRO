@@ -13,9 +13,9 @@ const Classess = ({ showSeeAll = true }) => {
             style={{ backgroundImage: `url(${classessBG})` }}
         >
             <div className="container">
-                <h2 className="section-title py-10 text-center lg:py-16">Classes</h2>
+                <h2 data-reveal className="section-title title-bar py-10 text-center lg:py-16">Classes</h2>
 
-                <div className="mx-auto grid max-w-sm grid-cols-1 gap-x-8 gap-y-12 text-white sm:max-w-none sm:grid-cols-2 lg:grid-cols-3 lg:px-8">
+                <div data-stagger className="mx-auto grid max-w-sm grid-cols-1 gap-x-8 gap-y-12 text-white sm:max-w-none sm:grid-cols-2 lg:grid-cols-3 lg:px-8">
                     {CLASSES.map((card) => (
                         <article key={card.slug} className="flex h-full flex-col">
                             <Link to={`/${card.slug}`} className="group relative mb-6 block" aria-label={`${card.title} details`}>
@@ -60,7 +60,7 @@ const Classess = ({ showSeeAll = true }) => {
                 </div>
 
                 {showSeeAll && (
-                    <div className="mt-12 text-center">
+                    <div data-reveal className="mt-12 text-center">
                         <OneSideCurveButton to="/Classes" text="See all" p_x="clamp(3rem, 12vw, 8rem)" p_y="0.5rem" />
                     </div>
                 )}

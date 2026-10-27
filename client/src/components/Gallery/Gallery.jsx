@@ -48,13 +48,13 @@ const Gallery = () => {
 
     return (
         <section ref={topRef} className="relative scroll-mt-16 overflow-hidden bg-ink py-12">
-            <h1 className="section-title mb-10 text-center">Gallery</h1>
-            <div className="absolute bottom-1/2 left-0 h-14 w-2/3 max-w-96 bg-gradient-to-t from-orangeL to-orangeR opacity-30" aria-hidden="true" />
-            <div className="absolute bottom-1/3 left-0 h-14 w-1/2 bg-gradient-to-t from-orangeL to-orangeR opacity-30" aria-hidden="true" />
+            <h1 data-reveal className="section-title title-bar mb-10 text-center">Gallery</h1>
+            <div data-scrollbar className="load-bar absolute bottom-1/2 left-0 h-14 w-2/3 max-w-96 bg-gradient-to-t from-orangeL to-orangeR opacity-40" aria-hidden="true" />
+            <div data-scrollbar className="load-bar absolute bottom-1/3 left-0 h-14 w-1/2 bg-gradient-to-t from-orangeL to-orangeR opacity-40" aria-hidden="true" />
             <div className="container relative">
-                <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
-                    {currentItems.map((item) => (
-                        <figure key={item.id} className="group text-center">
+                <div key={currentPage} className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
+                    {currentItems.map((item, i) => (
+                        <figure key={item.id} className="fade-swap group text-center" style={{ animationDelay: `${i * 70}ms` }}>
                             <div className="overflow-hidden rounded-lg shadow-lg">
                                 <img
                                     className="aspect-[285/400] h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"

@@ -7,7 +7,7 @@ const DownloadPart = () => {
     return (
         <section className="overflow-hidden bg-gradient-to-t from-orangeL to-orangeR py-12 text-white">
             <div className="container flex flex-col items-center justify-between gap-8 lg:flex-row">
-                <div className="text-center lg:w-7/12 lg:pl-10 lg:text-left">
+                <div data-reveal="left" className="text-center lg:w-7/12 lg:pl-10 lg:text-left">
                     <h2 className="font-Outfit text-3xl font-semibold sm:text-4xl lg:text-48px lg:leading-tight">
                         Download the most loved <br className="hidden sm:block" />fitness app
                     </h2>
@@ -17,8 +17,8 @@ const DownloadPart = () => {
                         <img src={downloadBtn2} alt="Download on the App Store" className="w-36 md:w-40 lg:w-48" width="186" height="60" loading="lazy" />
                     </div>
                 </div>
-                <div className="w-full max-w-sm lg:w-5/12 lg:max-w-none">
-                    <img src={DownloadImg} alt="SPYRO app screens" className="w-full object-cover" width="543" height="520" loading="lazy" />
+                <div data-reveal="right" className="w-full max-w-sm lg:w-5/12 lg:max-w-none">
+                    <img src={DownloadImg} alt="SPYRO app screens" className="float-y w-full object-cover" width="543" height="520" loading="lazy" />
                 </div>
             </div>
         </section>

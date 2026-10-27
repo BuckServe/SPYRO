@@ -4,21 +4,23 @@ import backgroundImg from '../../Images/background.webp';
 
 const Banner = () => {
     return (
-        <section
-            className="relative flex min-h-[100svh] items-center bg-ink bg-cover bg-[70%_center] bg-no-repeat pb-16 pt-24 lg:min-h-[115vh]"
-            style={{
+        <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-ink pb-16 pt-24 lg:min-h-[115vh]">
+            <div
+                className="hero-bg absolute inset-0 bg-cover bg-[70%_center] bg-no-repeat"
+                aria-hidden="true"
+                style={{
                 backgroundImage: `linear-gradient(to top, rgba(30, 30, 30, 1), rgba(30, 30, 30, 0) 30%),
                                   linear-gradient(to bottom, rgba(30, 30, 30, 0) 60%, rgba(30, 30, 30, 1)),
                                   url(${backgroundImg})`,
-            }}
-        >
+                }}
+            />
             {/* Darken the left side on small screens so the text stays readable over the photo */}
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent xl:hidden" aria-hidden="true" />
             <div className="container relative">
                 <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
-                    <div className="max-w-xl text-white">
+                    <div className="hero-in max-w-xl text-white">
                         <h1 className="font-orbitron text-4xl font-bold leading-tight sm:text-5xl sm:leading-snug lg:text-6xl xl:text-[64px]">
-                            <span className="text-transparent" style={{ WebkitTextStroke: '2px #FF4300' }}>
+                            <span className="stroke-glow text-transparent" style={{ WebkitTextStroke: '2px #FF4300' }}>
                                 Unleash
                             </span>{' '}
                             your <br /> inner Athlete

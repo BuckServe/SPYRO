@@ -29,12 +29,12 @@ const Feedback = () => {
     return (
         <section className="w-full bg-ink bg-cover bg-center pb-16 lg:pb-20" style={{ backgroundImage: `url(${classessBG})` }}>
             <div className="container">
-                <h2 className="section-title py-12 text-center lg:pb-14 lg:pt-20">Client’s Feedback</h2>
-                <div className="mx-auto grid max-w-md gap-6 sm:max-w-none sm:grid-cols-2 lg:max-w-5xl lg:grid-cols-3">
+                <h2 data-reveal className="section-title title-bar py-12 text-center lg:pb-14 lg:pt-20">Client’s Feedback</h2>
+                <div data-stagger className="mx-auto grid max-w-md gap-6 sm:max-w-none sm:grid-cols-2 lg:max-w-5xl lg:grid-cols-3">
                     {reviews.map((item) => (
                         <figure
                             key={item.name}
-                            className="flex h-full flex-col justify-between rounded-lg border-b-8 border-orange-700 bg-gray-800 p-6 shadow-lg transition-transform duration-300 hover:-translate-y-1"
+                            className="flex h-full flex-col justify-between rounded-lg border-b-8 border-orange-700 bg-gray-800 p-6 shadow-lg lift"
                         >
                             <blockquote className="mb-6 font-Outfit text-base text-white sm:text-lg">“{item.review}”</blockquote>
                             <figcaption>

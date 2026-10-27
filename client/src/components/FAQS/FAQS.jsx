@@ -46,9 +46,9 @@ const FAQS = () => {
     return (
         <section className="relative overflow-hidden bg-ink py-14 text-white lg:py-24">
             <div className="container max-w-5xl">
-                <h2 className="section-title mb-8 text-center">Frequently Asked Questions</h2>
+                <h2 data-reveal className="section-title title-bar mb-8 text-center">Frequently Asked Questions</h2>
 
-                <div className="divide-y divide-slate-200/70">
+                <div data-stagger className="divide-y divide-slate-200/70">
                     {faqsData.map((faq) => {
                         const open = expanded === faq.id;
                         return (
@@ -87,7 +87,7 @@ const FAQS = () => {
                     })}
                 </div>
 
-                <div className="mx-3 mt-10 flex -skew-x-6 flex-col bg-orangeL px-6 py-5 sm:-skew-x-12 sm:px-9 lg:mt-12 lg:flex-row lg:items-center">
+                <div data-reveal="zoom" className="mx-3 mt-10 flex -skew-x-6 flex-col bg-orangeL px-6 py-5 sm:-skew-x-12 sm:px-9 lg:mt-12 lg:flex-row lg:items-center">
                     <div className="flex-1 skew-x-6 sm:skew-x-12">
                         <h2 className="font-Outfit text-2xl font-semibold md:text-3xl lg:text-4xl">Are you ready to change?</h2>
                         <p className="mt-1 font-Outfit text-sm md:text-base">

@@ -1,8 +1,9 @@
-import React, { Suspense, lazy, useEffect } from 'react';
+import React, { Suspense, lazy, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import SNavbar from './components/Navbar/SNavbar';
 import Banner from './components/Banner/Banner';
 import Footer from './components/Footer/Footer';
+import useScrollFx from './hooks/useScrollFx';
 
 // Each page is downloaded only when it is visited
 const HomeComponent = lazy(() => import('./components/FAQS/HomeComponent'));
@@ -48,9 +49,12 @@ function BannerWrapper({ children }) {
 
 const PageFallback = () => <div className="min-h-[60vh] bg-ink" aria-busy="true" />;
 
-function App() {
+function Shell() {
+  const rootRef = useRef(null);
+  const { pathname } = useLocation();
+  useScrollFx(rootRef, pathname);
   return (
-    <Router>
+    <div ref={rootRef}>
       <PageEffects />
       <SNavbar />
       <main>
@@ -72,6 +76,14 @@ function App() {
         </BannerWrapper>
       </main>
       <Footer />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Shell />
     </Router>
   );
 }

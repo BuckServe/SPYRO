@@ -14,9 +14,9 @@ const Moves = () => {
     return (
         <section className="bg-ink py-12">
             <div className="container">
-                <h2 className="section-title mb-10 text-center">Find what moves you</h2>
+                <h2 data-reveal className="section-title title-bar mb-10 text-center">Find what moves you</h2>
 
-                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+                <div data-stagger className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
                     {/* GYM */}
                     <div className="flex flex-col text-white sm:col-span-2 md:col-span-3 lg:col-span-2">
                         <div className="overflow-hidden rounded-tl-[40px] lg:rounded-tl-[60px]">
