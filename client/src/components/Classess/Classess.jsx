@@ -4,15 +4,10 @@ import { LuTimer, LuUser } from 'react-icons/lu';
 import { CLASSES } from '../../data/classes';
 import OneSideCurveButton from '../Buttons/OneSideCurveButton';
 import OneSideCurveButtonWithOutline from '../Buttons/OneSideCurveButtonWithOutline';
-import classessBG from '../../Images/classessBG.webp';
 
 const Classess = ({ showSeeAll = true }) => {
     return (
-        <section
-            id="classes"
-            className="w-full bg-ink bg-cover bg-center pb-14 lg:pb-20"
-            style={{ backgroundImage: `url(${classessBG})` }}
-        >
+        <section id="classes" className="green-grid w-full pb-14 lg:pb-20">
             <div className="container">
                 <h2 data-reveal className="section-title title-bar py-10 text-center lg:py-16">Classes</h2>
 
@@ -26,8 +21,8 @@ const Classess = ({ showSeeAll = true }) => {
                                     src={card.image}
                                     alt={card.title}
                                     loading="lazy"
-                                    width="364"
-                                    height="258"
+                                    width="564"
+                                    height="400"
                                 />
                             </Link>
 

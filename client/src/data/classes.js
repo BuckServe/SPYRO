@@ -1,22 +1,22 @@
-import strengthImg from '../Images/cc3.webp';
-import burnoutImg from '../Images/cc2.webp';
-import bootcampImg from '../Images/cc1.webp';
+import strengthImg from '../Images/class-strength.webp';
+import burnoutImg from '../Images/class-burnout.webp';
+import bootcampImg from '../Images/class-bootcamp.webp';
 
 // One source of truth for the class cards and the class detail pages
 export const CLASSES = [
     {
         slug: 'Strength',
-        category: 'Yoga',
+        category: 'Gym',
         title: 'Strength & Sweat',
         students: 29,
         duration: '2H',
         durationLong: '2 Hours',
-        instructor: 'Esther Howard',
+        instructor: 'Cameron Williamson',
         classes: 30,
         difficulty: 'Beginner',
         image: strengthImg,
         description:
-            'This class focuses on building strength and increasing stamina through a series of yoga poses. Perfect for beginners who want to get a full-body workout while also improving flexibility and mindfulness.',
+            'This class focuses on building strength and increasing stamina with battle ropes, free weights and bodyweight moves. Perfect for beginners who want a full-body workout and a solid base to grow from.',
     },
     {
         slug: 'BurnOut',

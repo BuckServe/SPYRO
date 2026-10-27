@@ -50,7 +50,7 @@ const ClassDetail = ({ slug }) => {
                 <div data-reveal="right" className="mx-auto w-full max-w-md md:max-w-none">
                     <div className="relative">
                         <div className="photo-accent" aria-hidden="true" />
-                        <img className="relative z-10 h-auto w-full" src={c.image} alt={c.title} width="364" height="258" />
+                        <img className="relative z-10 h-auto w-full" src={c.image} alt={c.title} width="564" height="400" />
                     </div>
                 </div>
             </div>

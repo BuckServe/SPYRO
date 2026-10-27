@@ -53,6 +53,15 @@
     }
   }
 
+  /* Dark green background with a fine grid, used behind the class cards */
+  .green-grid {
+    background-color: #15302e;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 7px 7px;
+  }
+
   /* Class cards: thin orange frame around the lower part of the photo */
   .photo-accent.class-accent {
     left: -4px;
