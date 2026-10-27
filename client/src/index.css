@@ -53,6 +53,18 @@
     }
   }
 
+  /* Class cards: thin orange frame around the lower part of the photo */
+  .photo-accent.class-accent {
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    top: 62%;
+    height: auto;
+    background-color: #ff4300;
+    border-radius: 8px;
+    clip-path: none;
+  }
+
   .section-title {
     @apply font-Outfit text-3xl font-semibold text-white sm:text-4xl lg:text-48px;
   }
