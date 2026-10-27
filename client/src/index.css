@@ -227,6 +227,6 @@ html:not(.fx-ready) .title-bar::after { transform: skewX(-20deg) scaleX(1); }
     transition-duration: 0.01ms !important;
   }
 
-  .load-bar,
-  #scroll-progress { --p: 1 !important; }
+  .load-bar { --p: 1 !important; }
+  #scroll-progress { display: none; }
 }
