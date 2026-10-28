@@ -217,6 +217,10 @@
 .pulse-ring::after { animation-delay: 1s; }
 @keyframes ring { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.8); opacity: 0; } }
 
+/* Testimonials: bottom bar fills while a review is showing */
+.testimonial-timer { width: 0; animation: timer-fill linear forwards; }
+@keyframes timer-fill { to { width: 100%; } }
+
 /* Gallery page switch */
 .fade-swap { animation: fade-swap 0.5s ease both; }
 @keyframes fade-swap { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }

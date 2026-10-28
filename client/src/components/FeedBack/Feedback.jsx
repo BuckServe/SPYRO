@@ -1,55 +1,133 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
-import CF1 from '../../Images/CF1.webp';
-import classessBG from '../../Images/classessBG.webp';
+import avatar1 from '../../Images/avatar-1.webp';
+import avatar2 from '../../Images/avatar-2.webp';
+import avatar3 from '../../Images/avatar-3.webp';
+import avatar4 from '../../Images/avatar-4.webp';
 
-// Placeholder testimonials: replace with real member reviews before launch
+// Sample testimonials: swap in real member reviews before launch
 const reviews = [
     {
-        review: 'The trainers actually check your form and push you just enough. Three months in and I am lifting more than I ever have.',
+        name: 'Sara R.',
+        avatar: avatar1,
         rating: 5,
-        name: 'Courtney Henry',
-        profile_picture: CF1,
+        text: 'I joined SPYRO to get back in shape after a long break and the coaches made it easy from day one. Every class is different, the trainers check your form, and the app reminds me of my sessions. Three months in and I feel stronger than ever!',
     },
     {
-        review: 'Total Body Burnout is tough but so much fun. The group energy keeps me coming back every week.',
-        rating: 4,
-        name: 'Brooklyn Simmons',
-        profile_picture: CF1,
+        name: 'Maya L.',
+        avatar: avatar2,
+        rating: 5,
+        text: 'The zumba and yoga classes are my favourite part of the week. Booking a spot in the app takes seconds, the studio is always clean, and the community is so welcoming. I never thought I would look forward to working out this much.',
     },
     {
-        review: 'Clean equipment, friendly people and classes for every level. I started as a complete beginner and never felt out of place.',
+        name: 'Daniel K.',
+        avatar: avatar3,
         rating: 4,
-        name: 'Jane Cooper',
-        profile_picture: CF1,
+        text: 'Total Body Burnout pushes me harder than any class I have tried. I like that I can track my progress and see my lifts go up week after week. It gets busy in the evenings, so book early, but the trainers still give everyone attention.',
+    },
+    {
+        name: 'Omar H.',
+        avatar: avatar4,
+        rating: 5,
+        text: 'Great equipment, friendly trainers and a plan that actually fits my schedule. The Bootcamp Challenge is tough but the energy in the room keeps you going. Highly recommend SPYRO to anyone who wants real results.',
     },
 ];
 
+const AUTOPLAY_MS = 6000;
+
 const Feedback = () => {
+    const [index, setIndex] = useState(0);
+    const [paused, setPaused] = useState(false);
+    const touchX = useRef(null);
+    const count = reviews.length;
+
+    const go = useCallback((i) => setIndex(((i % count) + count) % count), [count]);
+
+    // Slide on automatically, unless the visitor is hovering, has focus inside, or prefers less motion
+    useEffect(() => {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (paused || reduce) return undefined;
+        const t = window.setTimeout(() => go(index + 1), AUTOPLAY_MS);
+        return () => window.clearTimeout(t);
+    }, [index, paused, go]);
+
+    const onKeyDown = (e) => {
+        if (e.key === 'ArrowRight') go(index + 1);
+        if (e.key === 'ArrowLeft') go(index - 1);
+    };
+
     return (
-        <section className="w-full bg-ink bg-cover bg-center pb-16 lg:pb-20" style={{ backgroundImage: `url(${classessBG})` }}>
-            <div className="container">
-                <h2 data-reveal className="section-title title-bar py-12 text-center lg:pb-14 lg:pt-20">Client’s Feedback</h2>
-                <div data-stagger className="mx-auto grid max-w-md gap-6 sm:max-w-none sm:grid-cols-2 lg:max-w-5xl lg:grid-cols-3">
-                    {reviews.map((item) => (
+        <section className="green-grid w-full px-4 pb-16 lg:pb-24">
+            <h2 data-reveal className="section-title title-bar py-12 text-center lg:pb-14 lg:pt-20">Testimonials</h2>
+
+            <div
+                data-reveal="zoom"
+                className="relative mx-auto max-w-[640px] overflow-hidden bg-[#0b1b1a]/90 shadow-2xl shadow-black/40"
+                role="region"
+                aria-roledescription="carousel"
+                aria-label="Member testimonials"
+                tabIndex={0}
+                onKeyDown={onKeyDown}
+                onMouseEnter={() => setPaused(true)}
+                onMouseLeave={() => setPaused(false)}
+                onFocus={() => setPaused(true)}
+                onBlur={() => setPaused(false)}
+                onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
+                onTouchEnd={(e) => {
+                    if (touchX.current == null) return;
+                    const dx = e.changedTouches[0].clientX - touchX.current;
+                    if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
+                    touchX.current = null;
+                }}
+            >
+                <div
+                    className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                    style={{ transform: `translateX(-${index * 100}%)` }}
+                >
+                    {reviews.map((r, i) => (
                         <figure
-                            key={item.name}
-                            className="flex h-full flex-col justify-between rounded-lg border-b-8 border-orange-700 bg-gray-800 p-6 shadow-lg lift"
+                            key={r.name}
+                            className="w-full shrink-0 px-6 pb-10 pt-8 font-Outfit sm:px-8"
+                            role="group"
+                            aria-roledescription="slide"
+                            aria-label={`${i + 1} of ${count}`}
+                            aria-hidden={i !== index}
                         >
-                            <blockquote className="mb-6 font-Outfit text-base text-white sm:text-lg">“{item.review}”</blockquote>
-                            <figcaption>
-                                <div className="mb-3 flex gap-1" aria-label={`${item.rating} out of 5 stars`}>
-                                    {Array.from({ length: 5 }, (_, i) => (
-                                        <FaStar key={i} className={i < item.rating ? 'text-yellow-400' : 'text-gray-600'} aria-hidden="true" />
-                                    ))}
-                                </div>
-                                <div className="flex items-center">
-                                    <img src={item.profile_picture} alt="" className="h-10 w-10 rounded-full sm:h-12 sm:w-12" width="60" height="60" loading="lazy" />
-                                    <p className="ml-3 font-Outfit text-sm text-white sm:text-base md:text-lg">{item.name}</p>
-                                </div>
+                            <blockquote className="text-[15px] leading-relaxed text-gray-100 sm:text-base">{r.text}</blockquote>
+                            <div className="mt-5 flex gap-1.5" aria-label={`${r.rating} out of 5 stars`}>
+                                {Array.from({ length: 5 }, (_, s) => (
+                                    <FaStar key={s} className={`text-xl sm:text-2xl ${s < r.rating ? 'text-orangeL' : 'text-white/20'}`} aria-hidden="true" />
+                                ))}
+                            </div>
+                            <figcaption className="mt-6 flex items-center gap-4">
+                                <img src={r.avatar} alt="" width="96" height="96" loading="lazy" className="h-10 w-10 rounded-full object-cover ring-2 ring-white/10" />
+                                <span className="text-base font-medium text-white sm:text-lg">{r.name}</span>
                             </figcaption>
                         </figure>
                     ))}
+                </div>
+
+                {/* Dots */}
+                <div className="absolute inset-x-0 bottom-4 flex justify-center gap-2">
+                    {reviews.map((r, i) => (
+                        <button
+                            key={r.name}
+                            type="button"
+                            onClick={() => go(i)}
+                            aria-label={`Show review ${i + 1}`}
+                            aria-current={i === index}
+                            className={`h-2 rounded-full transition-all duration-300 ${i === index ? 'w-6 bg-orangeR' : 'w-2 bg-white/25 hover:bg-white/50'}`}
+                        />
+                    ))}
+                </div>
+
+                {/* Orange bar along the bottom; it fills while the current review is showing */}
+                <div className="h-2 bg-orangeL/35" aria-hidden="true">
+                    <div
+                        key={`${index}-${paused}`}
+                        className={`h-full bg-orangeL ${paused ? 'w-full' : 'testimonial-timer'}`}
+                        style={{ animationDuration: `${AUTOPLAY_MS}ms` }}
+                    />
                 </div>
             </div>
         </section>
